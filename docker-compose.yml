@@ -1,0 +1,13 @@
+# FOR LOCAL DEVELOPMENT PURPOSES #
+version: "3.7"
+services:
+  kafka:
+    image: spotify/kafka
+    container_name: streams-kafka
+    hostname: streams-kafka
+    ports:
+      - "2181:2181"
+      - "9092:9092"
+    environment:
+      - "ADVERTISED_HOST=streams-kafka"
+      - "ADVERTISED_PORT=9092"
