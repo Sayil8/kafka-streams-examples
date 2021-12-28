@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.google.cloud.tools.jib' version '2.1.0'
 }
 
 group 'com.smuehr.kafka'
@@ -20,4 +21,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jib {
+    container {
+        mainClass 'com.smuehr.kafka.WordCount'
+        creationTime 'USE_CURRENT_TIMESTAMP'
+    }
+    from {
+        image 'openjdk:16-slim'
+    }
 }

@@ -17,7 +17,7 @@ public class WordCount {
     public static void main(String[] args) {
         Properties properties = new Properties();
         properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-starter-app");
-        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "sems-kafka:9092");
+        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "streams-kafka:9092");
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
@@ -54,7 +54,7 @@ public class WordCount {
         // print the topology
         System.out.println(streams.toString());
 
-        // shutdown hook to correctly close the streams application
+//      shutdown hook to correctly close the streams application
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 }

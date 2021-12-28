@@ -2,7 +2,7 @@
 version: "3.7"
 services:
   kafka:
-    image: spotify/kafka
+    image: lensesio/fast-data-dev
     container_name: streams-kafka
     hostname: streams-kafka
     ports:
@@ -11,3 +11,13 @@ services:
     environment:
       - "ADVERTISED_HOST=streams-kafka"
       - "ADVERTISED_PORT=9092"
+
+  word-count:
+    depends_on:
+      - kafka
+    container_name: word-count
+    image: smuehr/word-count:latest
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: "Europe/Berlin"
