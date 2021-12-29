@@ -25,7 +25,7 @@ public class FavouriteColour {
         properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        List<String> acceptedColors = Arrays.asList("green", "red", "blue" );
+        List<String> acceptedColors = Arrays.asList("yellow", "white", "black" );
 
         StreamsBuilder builder = new StreamsBuilder();
 
@@ -39,9 +39,30 @@ public class FavouriteColour {
                 .mapValues(value -> value.split(",")[1].toLowerCase())
                 .filter(((key, value) -> acceptedColors.contains(value)));
 
+        /**
+         * To transform a KStream into a KTable we use aggregation
+         * we use a groupBy and an aggregation step
+         *
+         * KTables are useful when we want to have stateful operation
+         * An insert of an existing key would lead to an update
+         *
+         * Following commented lines show the aggregation
+         */
+//        KTable<String, Long> colourCountByAggregation = colorPerson
+//                .toTable()
+//                .groupBy(((key, value) -> KeyValue.pair(value, value)))
+//                .count();
+//
+//        colourCountByAggregation.toStream().to("favourite-colour-output", Produced.with(Serdes.String(), Serdes.Long()));
+
+
+        /**
+         * We want to use a KTable to handle updates to the same key
+         * We transform the stream to a table by using writing to an intermediate topic
+         * and reading from it as a table
+         */
         // Write to an intermediate kafka topic
         colorPerson.to("intermediate-favourite-colour", Produced.with(Serdes.String(), Serdes.String()));
-
 
         // Read the topic as a KTable
         KTable<String, String> colorPersonTable = builder.table("intermediate-favourite-colour");
@@ -53,6 +74,7 @@ public class FavouriteColour {
 
         // Write the results back to kafka
         colourCount.toStream().to("favourite-colour-output", Produced.with(Serdes.String(), Serdes.Long()));
+
 
         KafkaStreams streams = new KafkaStreams(builder.build(), properties);
 
