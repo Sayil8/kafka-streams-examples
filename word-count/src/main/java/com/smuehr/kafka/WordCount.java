@@ -35,7 +35,6 @@ public class WordCount {
                 .flatMapValues(value -> Arrays.asList(value.split(" ")))
 
                 //select the new key
-
                 .selectKey((key, value) -> value)
 
                 // group by key
@@ -54,7 +53,7 @@ public class WordCount {
         // print the topology
         System.out.println(streams.toString());
 
-//      shutdown hook to correctly close the streams application
+        //shutdown hook to correctly close the streams application
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 }

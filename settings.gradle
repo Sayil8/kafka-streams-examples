@@ -1,4 +1,5 @@
 rootProject.name = 'kafka-streams-examples'
 
 include 'word-count'
+include 'favourite-colour'
 

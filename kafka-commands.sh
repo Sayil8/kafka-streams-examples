@@ -8,6 +8,10 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 # create output topic
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic word-count-output
 
+# create compact topic
+kafka-topics --create --topic intermediate-favourite-colour --partitions 2 --replication-factor 1 --if-not-exists \
+--zookeeper  0.0.0.0:2181 --config cleanup.policy=compact
+
 # start a kafka producer
 kafka-console-producer --broker-list localhost:9092 --topic word-count-input
 
