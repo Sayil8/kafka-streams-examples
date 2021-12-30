@@ -31,3 +31,23 @@ services:
       - "8081:8080"
     environment:
       TZ: "Europe/Berlin"
+
+  bank-balance-producer:
+    depends_on:
+      - kafka
+    container_name: bank-balance-producer
+    image: smuehr/bank-balance-producer:latest
+    ports:
+      - "8082:8080"
+    environment:
+      TZ: "Europe/Berlin"
+
+  bank-balance:
+    depends_on:
+      - kafka
+    container_name: bank-balance
+    image: smuehr/bank-balance:latest
+    ports:
+      - "8083:8080"
+    environment:
+      TZ: "Europe/Berlin"
