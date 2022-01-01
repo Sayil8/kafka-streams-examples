@@ -13,3 +13,11 @@ build-bank-balance-producer:
 .PHONY: build-bank-balance # Builds bank balance Docker image
 build-bank-balance:
 	 ./gradlew :bank-balance:jibDockerBuild -Djib.to.image="smuehr/bank-balance:latest"
+
+.PHONY: build-user-data-producer # Builds user data producer Docker image
+build-user-data-producer:
+	 ./gradlew :user-data-producer:jibDockerBuild -Djib.to.image="smuehr/user-data-producer:latest"
+
+.PHONY: build-user-event-enricher # Builds user event enricher Docker image
+build-user-event-enricher:
+	 ./gradlew :user-event-enricher:jibDockerBuild -Djib.to.image="smuehr/user-event-enricher:latest"

@@ -70,7 +70,7 @@ public class BankBalance {
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 
-    private static JsonNode newBalance(JsonNode transaction, JsonNode balance) {
+    public static JsonNode newBalance(JsonNode transaction, JsonNode balance) {
         // create a new balance json object
         ObjectNode newBalance = JsonNodeFactory.instance.objectNode();
         newBalance.put("count", balance.get("count").asInt() + 1);

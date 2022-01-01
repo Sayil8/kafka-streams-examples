@@ -4,4 +4,6 @@ include 'word-count'
 include 'favourite-colour'
 include 'bank-balance-producer'
 include 'bank-balance'
+include 'user-data-producer'
+include 'user-event-enricher'
 

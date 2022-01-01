@@ -21,7 +21,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic word-count-inpu
 
 # start a consumer on the output topic
 kafka-console-consumer --bootstrap-server localhost:9092 \
-    --topic bank-transactions-output \
+    --topic user-purchased-enriched-left-join \
     --from-beginning \
     --formatter kafka.tools.DefaultMessageFormatter \
     --property print.key=true \
