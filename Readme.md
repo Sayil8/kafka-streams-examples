@@ -3,7 +3,7 @@
 Made use of docker images
 
 
-### Cover topics
+### Covered topics
 - Exactly once
 - At least once
 - KStreams
@@ -13,3 +13,7 @@ Made use of docker images
   - Count, aggregate, reduce
 - Stateless operations
   - Map, Flatmap, Filter, Branch, SetKey
+  - Testing streams
+
+### Useful links:
+- https://kafka.apache.org/28/documentation/streams/developer-guide/testing.html

@@ -56,16 +56,16 @@ class WordCountTest {
     public void ensureCountsAreCorrect() {
         String firstExample = "Testing Kafka applications";
         pushNewRecord(firstExample);
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("testing", 1L));
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("kafka", 1L));
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("applications", 1L));
+        assertEquals(new KeyValue<>("testing", 1L), outputTopic.readKeyValue());
+        assertEquals(new KeyValue<>("kafka", 1L), outputTopic.readKeyValue());
+        assertEquals(new KeyValue<>("applications", 1L), outputTopic.readKeyValue());
         assertTrue(outputTopic.isEmpty());
 
         String secondExample = "Testing kafka again";
         pushNewRecord(secondExample);
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("testing", 2L));
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("kafka", 2L));
-        assertEquals(outputTopic.readKeyValue(), new KeyValue<>("again", 1L));
+        assertEquals(new KeyValue<>("testing", 2L), outputTopic.readKeyValue());
+        assertEquals(new KeyValue<>("kafka", 2L), outputTopic.readKeyValue());
+        assertEquals(new KeyValue<>("again", 1L), outputTopic.readKeyValue());
         assertTrue(outputTopic.isEmpty());
     }
 
